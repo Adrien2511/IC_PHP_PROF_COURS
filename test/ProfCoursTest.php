@@ -93,6 +93,7 @@ class ProfCoursTest extends TestCase
             new Cours("Cours7", "3", 5),       // idcours = 7   ** A SUPPRIMER **
             new Cours("Cours8", "4", 5),       // idcours = 8
             new Cours("Cours9", "3", 5),        // idcours = 9   ** A MODIFIER **
+            new Cours("Cours10", "3", 5),        // idcours = 10
             
             /**
             *
@@ -180,6 +181,10 @@ class ProfCoursTest extends TestCase
         foreach (self::$cours_a as $cours) {
             $cours->add($conn);
         }
+        $expected_cours = count(self::$cours_a);
+        $num_records_cours = Cours::count($conn);
+        $this->assertEquals($expected_cours, $num_records_cours, "Enregistrement des cours ...\n");
+        $this->assertCount($num_records_cours, self::$cours_a, "Enregistrement des cours ...\n");
         
         /**
         *
